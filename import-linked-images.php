@@ -34,9 +34,11 @@ class Import_Linked_Images {
 
 		preg_match_all( '#<img[^>]* src=[\'"]?([^>\'" ]+)#', $content, $sources );
 		foreach ( $sources[1] as $src ) {
+			// Has to at least look like a valid domain
 			if ( ! preg_match( '#^https?://#', $src ) )
 				continue;
 
+			// ...but not this domain
 			if ( $siteurl == substr( $src, 0, strlen( $siteurl ) ) )
 				continue;
 
