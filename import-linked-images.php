@@ -8,7 +8,7 @@ Author URI: http://evansolomon.me
 */
 
 class Import_Linked_Images {
-	static function content_save_pre( $content ) {
+	static function replace_external_images( $content ) {
 		$external_images = self::get_external_images( stripslashes( $content ) );
 
 		foreach ( $external_images as $external_image ) {
@@ -49,4 +49,4 @@ class Import_Linked_Images {
 	}
 }
 
-add_filter( 'content_save_pre', array( 'Import_Linked_Images', 'content_save_pre' ) );
+add_filter( 'content_save_pre', array( 'Import_Linked_Images', 'replace_external_images' ) );
