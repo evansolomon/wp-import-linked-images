@@ -16,6 +16,8 @@ class Import_Linked_Images {
 			if ( is_wp_error( $local_html ) )
 				continue;
 
+			// media_sideload_image() only returns HTML
+			// See http://core.trac.wordpress.org/ticket/19629
 			preg_match( "#<img src='([^']+)'#", $local_html, $local_src );
 			if ( ! $local_src[1] )
 				continue;
